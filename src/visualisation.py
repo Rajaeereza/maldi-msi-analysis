@@ -26,6 +26,34 @@ CLUSTER_COLOURS = [
 ]
 
 
+def assign_lipid_class(mz):
+    """
+    Assign a probable lipid class based on m/z range.
+
+    These are approximate class assignments based on m/z range only.
+    Precise lipid identification requires MS/MS fragmentation data.
+    Na/K adducts shift these ranges by +22 / +38 Da respectively.
+
+    Reference: Hsu & Turk (2009) J. Chromatogr. B 877:2714
+
+    Parameters
+    ----------
+    mz : float — m/z value in Da
+
+    Returns
+    -------
+    str — probable lipid class label
+    """
+    if   400 <= mz < 460:  return "Lysophospholipid (LPE/LPI)"
+    elif 460 <= mz < 600:  return "Lysophosphatidylcholine (LPC)"
+    elif 600 <= mz < 660:  return "Phosphatidylethanolamine (PE)"
+    elif 660 <= mz < 760:  return "PE / Phosphatidylcholine (PC)"
+    elif 760 <= mz < 830:  return "PC / Sphingomyelin (SM)"
+    elif 830 <= mz < 920:  return "Phosphatidylcholine (PC)"
+    elif 920 <= mz < 1000: return "Triacylglycerol (TAG) / large PC adduct"
+    else:                   return "Unknown"
+
+
 def plot_image(image, title="", cmap="viridis",
                colorbar_label="", ax=None, show=True):
     """Plot a 2D spatial image (TIC map, ion image, segmentation map)."""
@@ -60,7 +88,7 @@ def plot_spectrum(mz, intensities, title="",
         int_plot = intensities
 
     ax.vlines(mz_plot, ymin=0, ymax=int_plot,
-              linewidth=0.6, color=colour, alpha=0.8)
+              linewidth=0.6, colour=colour, alpha=0.8)
     ax.set_xlabel("m/z (Da)")
     ax.set_ylabel("Intensity")
     ax.set_title(title, fontsize=10)
