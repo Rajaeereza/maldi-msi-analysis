@@ -1,0 +1,6 @@
+metric,value
+ARI K-means vs GMM,0.1856
+ARI K-means vs Spectral,0.2038
+ARI GMM vs Spectral,0.3805
+Agreement pixels (%),1.99
+Disagreement pixels (%),98.01
