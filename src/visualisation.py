@@ -46,10 +46,8 @@ def assign_lipid_class(mz):
     """
     if   400 <= mz < 460:  return "Lysophospholipid (LPE/LPI)"
     elif 460 <= mz < 600:  return "Lysophosphatidylcholine (LPC)"
-    elif 600 <= mz < 660:  return "Phosphatidylethanolamine (PE)"
-    elif 660 <= mz < 760:  return "PE / Phosphatidylcholine (PC)"
-    elif 760 <= mz < 830:  return "PC / Sphingomyelin (SM)"
-    elif 830 <= mz < 920:  return "Phosphatidylcholine (PC)"
+    elif 600 <= mz < 700:  return "Phosphatidylethanolamine (PE)"
+    elif 700 <= mz < 920:  return "Phosphatidylcholine (PC)"
     elif 920 <= mz < 1000: return "Triacylglycerol (TAG) / large PC adduct"
     else:                   return "Unknown"
 
@@ -88,7 +86,7 @@ def plot_spectrum(mz, intensities, title="",
         int_plot = intensities
 
     ax.vlines(mz_plot, ymin=0, ymax=int_plot,
-              linewidth=0.6, colour=colour, alpha=0.8)
+              linewidth=0.6, color=colour, alpha=0.8)
     ax.set_xlabel("m/z (Da)")
     ax.set_ylabel("Intensity")
     ax.set_title(title, fontsize=10)
