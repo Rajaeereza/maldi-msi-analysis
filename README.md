@@ -52,20 +52,6 @@ Format: Centroided imzML — 34,840 pixels × ~153 peaks after preprocessing
 
 ---
 
-## Key methodological decisions
-
-- **No StandardScaler before clustering or PCA** — TIC normalisation
-  already makes intensities comparable; scaling would equalise noise
-  and signal
-- **PCA input for clustering** — first 10 PCs used as clustering input,
-  not raw 153-dimensional feature matrix
-- **Pairwise differential abundance** — avoids trivially significant
-  results for the dominant tissue region (64.6% of pixels)
-- **Hungarian algorithm for label alignment** — required before any
-  pixel-level agreement comparison between segmentation methods
-
----
-
 ## How to run
 
 1. Open in GitHub Codespaces
